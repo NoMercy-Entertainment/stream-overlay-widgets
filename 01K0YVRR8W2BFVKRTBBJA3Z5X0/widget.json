@@ -1,0 +1,31 @@
+{
+	"id": "01K0YVRR8W2BFVKRTBBJA3Z5X0",
+	"name": "Logo badge",
+	"description": "Show your logo in a badge containing custom messages",
+	"version": "1.0.0",
+	"framework": "vue",
+	"isEnabled": true,
+	"eventSubscriptions": [
+		"channel.raid",
+		"channel.follow",
+		"channel.subscribe",
+		"channel.subscription.message",
+		"channel.subscription.gift"
+	],
+	"settings": {
+		"width": 900,
+		"height": 140,
+		"rainbow": true,
+		"badgeTransitionDuration": 2,
+		"badgeOpenDuration": 10,
+		"badgeClosedDuration": 10,
+		"texts": [
+			"Stoney_Eagle",
+			"NoMercy TV",
+			"The Effortless Encoder",
+			"https://nomercy.tv"
+		]
+	},
+	"createdAt": "2025-07-24T18:40:12Z",
+	"updatedAt": "2025-07-24T18:40:12Z"
+}

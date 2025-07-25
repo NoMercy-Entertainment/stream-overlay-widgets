@@ -1,0 +1,62 @@
+<script setup lang="ts">
+import { ref, watch } from 'vue';
+
+import { spotifyQueue, spotifyState } from '@/stores/spotify';
+
+const nextUpCard = ref<HTMLElement>();
+
+watch(spotifyState, (newValue, oldValue) => {
+	if (!newValue.is_playing)
+		return;
+
+	// Add shine effect when track changes
+	if (oldValue?.item?.id !== newValue.item?.id) {
+		moveUp();
+	}
+});
+
+// Add shine effect to the widget
+function moveUp() {
+	if (!nextUpCard.value)
+		return;
+
+	nextUpCard.value.classList.add('-translate-y-[25%]');
+
+	setTimeout(() => {
+		nextUpCard.value?.classList.remove('-translate-y-[25%]');
+	}, 10000);
+}
+</script>
+
+<template>
+	<div v-if="spotifyQueue.length > 0" class="card">
+		<div ref="nextUpCard"
+			class="flex flex-col rounded-lg p-4 gap-y-2 min-w-[200px] max-w-[600px] w-fit relative overflow-clip next-up-card mb-8"
+		>
+			<div class="absolute inset-0 w-available h-available bg-theme-900/90 -z-10" />
+			<div class="text-theme-200 text-md -mt-1">
+				Next in queue:
+			</div>
+			<div v-for="(track, index) in spotifyQueue.toSpliced(1)" :key="index" class="flex items-center space-x-3">
+				<img :src="track.album.images.at(0)?.url" :alt="`${track.name} album art`" class="w-10 h-10 rounded-md">
+				<div class="flex flex-col">
+					<div class="text-theme-300 font-bold text-base">
+						{{ track.name }}
+					</div>
+					<div class="text-theme-400 text-md">
+						{{ track.artists.at(0)?.name }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<style scoped>
+.card {
+	align-self: self-end;
+}
+.next-up-card {
+	transition: all 0.5s ease-in-out;
+}
+</style>

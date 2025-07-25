@@ -1,0 +1,22 @@
+{
+	"id": "01K0YHF9TCA31YA1DCK8ZHPEB5",
+	"name": "Spotify NowPlaying",
+	"description": "Show Spotify now playing and next up in the queue",
+	"version": "1.0.0",
+	"framework": "vue",
+	"isEnabled": true,
+	"eventSubscriptions": [
+		"spotify.state.changed",
+		"spotify.track.like"
+	],
+	"settings": {
+		"showNexUp": "true",
+		"showNowPlaying": "true",
+		"rainbow": "true",
+		"baseColor": "#A00030",
+		"width": 700,
+		"height": 350
+	},
+	"createdAt": "2025-07-24T15:40:17Z",
+	"updatedAt": "2025-07-24T15:40:17Z"
+}

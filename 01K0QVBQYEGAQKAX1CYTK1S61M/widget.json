@@ -1,0 +1,37 @@
+{
+	"id": "01K0QVBQYEGAQKAX1CYTK1S61M",
+	"name": "Twitch Chat Overlay",
+	"description": "Real-time Twitch chat overlay with animated messages, user badges, pronouns, and customizable styling. Features smooth enter/exit animations, message queuing, and OG link previews.",
+	"version": "1.0.0",
+	"framework": "vue",
+	"isEnabled": true,
+	"eventSubscriptions": [
+		"twitch.chat.message",
+		"twitch.chat.message_delete",
+		"twitch.chat.user_ban",
+		"twitch.chat.user_timeout",
+		"twitch.user.update",
+		"twitch.chat.badges_update"
+	],
+	"settings": {
+		"maxMessages": 4,
+		"chatAnimationDuration": 0.75,
+		"chatShowDuration": 30,
+		"defaultColor": "#f72264",
+		"width": 520,
+		"height": 600,
+		"features": {
+			"userBadges": true,
+			"userPronouns": true,
+			"userColors": true,
+			"lightColorDetection": true,
+			"shineEffect": true,
+			"marqueeText": true,
+			"ogPreviews": true,
+			"emoteSupport": true,
+			"whitelistedUsers": true
+		}
+	},
+	"createdAt": "2025-07-22T01:18:25Z",
+	"updatedAt": "2025-07-22T01:18:25Z"
+}
