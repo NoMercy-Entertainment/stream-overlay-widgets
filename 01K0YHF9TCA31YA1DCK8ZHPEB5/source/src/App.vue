@@ -11,6 +11,7 @@ import NowPlaying from '@/components/NowPlaying.vue';
 import { useWidgetSocket } from '@/hooks/useWidgetSocket';
 import { updateWidgetSettings, widgetId, widgetSettings } from '@/stores/config';
 import { setSpotifyQueue, setSpotifyState, spotifyState } from '@/stores/spotify';
+import { syncRgb } from '@/utils';
 import serverClient from '@/utils/serverClient';
 
 // Initialize WebSocket connection
@@ -25,11 +26,13 @@ onMounted(async () => {
 	await socket.connect();
 	socket.on('SettingsUpdated', handleSettingsUpdated);
 	socket.on('WidgetEvent', handleWidgetEvent);
+	socket.on('Sync', syncRgb);
 });
 
 onMounted(() => {
 	socket.off('SettingsUpdated', handleSettingsUpdated);
 	socket.off('WidgetEvent', handleWidgetEvent);
+	socket.off('Sync', syncRgb);
 });
 
 function handleWidgetEvent(eventPayload: Argument) {

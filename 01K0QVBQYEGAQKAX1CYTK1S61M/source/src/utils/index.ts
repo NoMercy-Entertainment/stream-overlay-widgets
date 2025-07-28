@@ -12,7 +12,7 @@ export function tooLight(color: string, threshold = 140): boolean {
 	return luminance > threshold;
 }
 
-function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+export function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
 	// Remove # if present
 	hex = hex.replace('#', '');
 
@@ -29,6 +29,18 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
 				b: Number.parseInt(result[3], 16),
 			}
 		: null;
+}
+
+/**
+ * Synchronize RGB animations in the document
+ */
+export function syncRgb() {
+	document.getAnimations()
+		.filter((a: any) => a.animationName === 'changeColor')
+		.forEach((anim) => {
+			anim.cancel();
+			anim.play();
+		});
 }
 
 // Marquee utility function
@@ -115,7 +127,7 @@ function createLinkNode(messageId: string, url: string, index: number): MessageN
 	};
 }
 
-function buildTextNode(messageId: string, fragment: Fragment, index: number): MessageNode {
+function createTextNode(messageId: string, fragment: Fragment, index: number): MessageNode {
 	return {
 		type: 'p',
 		id: `${messageId}-text-${index}`,
@@ -124,7 +136,7 @@ function buildTextNode(messageId: string, fragment: Fragment, index: number): Me
 	};
 }
 
-function buildEmoteNode(messageId: string, fragment: Fragment, index: number): MessageNode {
+function createEmoteNode(messageId: string, fragment: Fragment, index: number): MessageNode {
 	return {
 		type: 'emote',
 		id: `${messageId}-emote-${index}`,
@@ -136,7 +148,7 @@ function buildEmoteNode(messageId: string, fragment: Fragment, index: number): M
 	};
 }
 
-function buildUrlNode(messageId: string, fragment: Fragment, index: number): MessageNode {
+function createUrlNode(messageId: string, fragment: Fragment, index: number): MessageNode {
 	return {
 		type: 'a',
 		id: `${messageId}-url-${index}`,
@@ -150,7 +162,7 @@ function buildUrlNode(messageId: string, fragment: Fragment, index: number): Mes
 	};
 }
 
-function buildOgPreviewNode(messageId: string, fragment: Fragment, index: number): MessageNode {
+function createOgPreviewNode(messageId: string, fragment: Fragment, index: number): MessageNode {
 	return {
 		type: 'og-preview',
 		id: `${messageId}-og-preview-${index}`,
@@ -178,16 +190,16 @@ export function createMessageNode(message: ChatMessage): MessageNode {
 	if (message.fragments && message.fragments.length > 0) {
 		message.fragments.forEach((fragment, index) => {
 			if (fragment.type === 'text') {
-				nodes.children?.push(buildTextNode(message.id, fragment, index));
+				nodes.children?.push(createTextNode(message.id, fragment, index));
 			}
 			else if (fragment.type === 'emote') {
-				nodes.children?.push(buildEmoteNode(message.id, fragment, index));
+				nodes.children?.push(createEmoteNode(message.id, fragment, index));
 			}
 			else if (fragment.type === 'url') {
-				nodes.children?.push(buildUrlNode(message.id, fragment, index));
+				nodes.children?.push(createUrlNode(message.id, fragment, index));
 				// Collect OG preview node if html_preview exists
 				if (fragment.html_preview) {
-					ogPreviewNodes.push(buildOgPreviewNode(message.id, fragment, index));
+					ogPreviewNodes.push(createOgPreviewNode(message.id, fragment, index));
 				}
 			}
 			else if (fragment.type === 'html') {

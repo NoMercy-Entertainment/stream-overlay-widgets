@@ -5,22 +5,15 @@
 /**
  * Check if a color is too light (for text contrast)
  */
-export function tooLight(color: string, threshold: number = 140): boolean {
-	if (!color)
+export function tooLight(color: string, threshold = 140): boolean {
+	// Convert color to RGB values
+	const rgb = hexToRgb(color);
+	if (!rgb)
 		return false;
 
-	// Remove # if present
-	const hex = color.replace('#', '');
-
-	// Parse RGB values
-	const r = Number.parseInt(hex.substr(0, 2), 16);
-	const g = Number.parseInt(hex.substr(2, 2), 16);
-	const b = Number.parseInt(hex.substr(4, 2), 16);
-
-	// Calculate brightness
-	const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-
-	return brightness > threshold;
+	// Calculate luminance
+	const luminance = 0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b;
+	return luminance > threshold;
 }
 
 /**
@@ -104,4 +97,35 @@ export function shouldMarquee(el: HTMLElement) {
 		scroller.style.removeProperty('--marquee-width');
 		scroller.classList.remove('animate-marquee');
 	}
+}
+
+export function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+	// Remove # if present
+	hex = hex.replace('#', '');
+
+	// Handle 3-digit hex
+	if (hex.length === 3) {
+		hex = hex.split('').map(char => char + char).join('');
+	}
+
+	const result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	return result
+		? {
+				r: Number.parseInt(result[1], 16),
+				g: Number.parseInt(result[2], 16),
+				b: Number.parseInt(result[3], 16),
+			}
+		: null;
+}
+
+/**
+ * Synchronize RGB animations in the document
+ */
+export function syncRgb() {
+	document.getAnimations()
+		.filter((a: any) => a.animationName === 'changeColor')
+		.forEach((anim) => {
+			anim.cancel();
+			anim.play();
+		});
 }

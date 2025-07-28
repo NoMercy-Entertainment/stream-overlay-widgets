@@ -50,7 +50,7 @@
 	--color-950: hsl(var(--base), 100%, 5%);
 }
 
-div[data-rainbow='true'] *:has(.card) {
+*:has([data-rainbow='true']) {
 	animation: changeColor 25s linear infinite;
 }
 

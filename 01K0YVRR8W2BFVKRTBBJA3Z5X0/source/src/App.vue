@@ -7,6 +7,7 @@ import Badge from '@/components/Badge.vue';
 import { useWidgetSocket } from '@/hooks/useWidgetSocket';
 
 import { messageNow, updateWidgetSettings, widgetId, widgetSettings } from '@/stores/config';
+import { syncRgb } from '@/utils';
 
 // Initialize WebSocket connection
 const socket = useWidgetSocket(widgetId);
@@ -20,11 +21,13 @@ onMounted(async () => {
 	await socket.connect();
 	socket.on('SettingsUpdated', handleSettingsUpdated);
 	socket.on('WidgetEvent', handleWidgetEvent);
+	socket.on('Sync', syncRgb);
 });
 
 onMounted(() => {
 	socket.off('SettingsUpdated', handleSettingsUpdated);
 	socket.off('WidgetEvent', handleWidgetEvent);
+	socket.off('Sync', syncRgb);
 });
 
 function handleWidgetEvent(eventPayload: Argument) {

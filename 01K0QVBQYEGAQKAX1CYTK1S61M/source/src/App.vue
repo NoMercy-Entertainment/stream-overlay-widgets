@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 
+import { syncRgb } from '@/utils';
+
 import Chat from './components/Chat.vue';
 
 import { useWidgetSocket } from './hooks/useWidgetSocket';
-
 import {
 	updateWidgetSettings,
 	widgetId,
@@ -20,10 +21,12 @@ function handleSettingsUpdated(newSettings: any) {
 onMounted(async () => {
 	await socket.connect();
 	socket.on('SettingsUpdated', handleSettingsUpdated);
+	socket.on('Sync', syncRgb);
 });
 
 onMounted(() => {
 	socket.off('SettingsUpdated', handleSettingsUpdated);
+	socket.off('Sync', syncRgb);
 });
 </script>
 
