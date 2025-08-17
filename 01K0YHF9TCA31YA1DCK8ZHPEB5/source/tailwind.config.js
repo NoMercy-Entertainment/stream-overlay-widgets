@@ -106,15 +106,15 @@ module.exports = {
 						opacity: 1,
 					},
 					'80%': {
-						transform: 'translateX(calc(-100% - var(--marquee-width, 250px)))',
+						transform: 'translateX(calc(-0% - var(--marquee-width, 250px)))',
 						opacity: 1,
 					},
 					'98%': {
-						transform: 'translateX(calc(-100% - var(--marquee-width, 250px)))',
+						transform: 'translateX(calc(-0% - var(--marquee-width, 250px)))',
 						opacity: 1,
 					},
 					'99%': {
-						transform: 'translateX(calc(-100% - var(--marquee-width, 250px)))',
+						transform: 'translateX(calc(-0% - var(--marquee-width, 250px)))',
 						opacity: 0,
 					},
 					'100%': {

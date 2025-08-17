@@ -90,7 +90,7 @@ export function shouldMarquee(el: HTMLElement) {
 	const scrollerWidth = scroller.getBoundingClientRect()?.width ?? 0;
 
 	if (containerWidth < scrollerWidth) {
-		scroller.style.setProperty('--marquee-width', `${containerWidth}px`);
+		scroller.style.setProperty('--marquee-width', `${275}px`);
 		scroller.classList.add('animate-marquee');
 	}
 	else {

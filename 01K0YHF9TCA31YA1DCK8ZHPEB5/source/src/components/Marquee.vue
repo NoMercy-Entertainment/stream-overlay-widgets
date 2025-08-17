@@ -22,7 +22,7 @@ watch(props, () => {
 		if (!marquee.value)
 			return;
 		shouldMarquee(marquee.value);
-	}, 500);
+	}, 1500);
 });
 
 onMounted(() => {
@@ -30,7 +30,7 @@ onMounted(() => {
 		if (!marquee.value)
 			return;
 		shouldMarquee(marquee.value);
-	}, 500);
+	}, 1500);
 });
 </script>
 

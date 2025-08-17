@@ -31,7 +31,7 @@ function moveUp() {
 <template>
 	<div v-if="spotifyQueue.length > 0" class="card">
 		<div ref="nextUpCard"
-			class="flex flex-col rounded-lg p-4 gap-y-2 min-w-[200px] max-w-[600px] w-fit relative overflow-clip next-up-card mb-8"
+			class="flex flex-col rounded-lg p-4 gap-y-2 min-w-[200px] max-w-[350px] w-fit relative overflow-clip next-up-card mb-8"
 		>
 			<div class="absolute inset-0 w-available h-available bg-theme-900/90 -z-10" />
 			<div class="text-theme-200 text-md -mt-1">
