@@ -43,6 +43,7 @@ watch(spotifyState, (newValue, oldValue) => {
 		addShineEffect();
 	}
 
+	console.log('Track liked:', newValue.is_liked);
 	if (newValue.is_liked) {
 		showLikeAnimation();
 	}

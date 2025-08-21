@@ -42,7 +42,7 @@ function handleWidgetEvent(eventPayload: Argument) {
 		setSpotifyState((eventPayload as Argument<SpotifyState>).Data);
 	}
 
-	else if (eventPayload.EventType === 'spotify.track.liked') {
+	else if (eventPayload.EventType === 'spotify.track.like') {
 		setSpotifyState({
 			...spotifyState.value,
 			is_liked: (eventPayload as Argument<boolean>).Data,
