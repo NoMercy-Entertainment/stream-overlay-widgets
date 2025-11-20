@@ -2,36 +2,35 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 
 import { useWidgetSocket } from './hooks/useWidgetSocket';
-import {updateWidgetSettings, widgetId, widgetName} from "@/stores/config";
-import {Argument} from "@/types/events";
+import { updateWidgetSettings, widgetId, widgetName } from "@/stores/config";
+import { Argument } from "@/types/events";
 
 // Initialize WebSocket connection
 const socket = useWidgetSocket(widgetId);
 
 const handleSettingsUpdated = (newSettings: any) => {
-  console.log('Received settings update:', newSettings);
-  updateWidgetSettings(newSettings);
+	console.log('Received settings update:', newSettings);
+	updateWidgetSettings(newSettings);
 };
 
 function handleWidgetEvent(eventPayload: Argument) {
-  console.log('Received widget event:', eventPayload);
+	console.log('Received widget event:', eventPayload);
 
-  if (eventPayload.EventType === 'channel.chat.message.tts') {
-    handleTtsEvent(eventPayload.Data as TtsEvent);
-  }
+	if (eventPayload.EventType === 'channel.chat.message.tts') {
+		handleTtsEvent(eventPayload.Data as TtsEvent);
+	}
 }
 
 onMounted(async () => {
-  await socket.connect();
-  socket.on('SettingsUpdated', handleSettingsUpdated);
-  socket.on('WidgetEvent', handleWidgetEvent);
+	await socket.connect();
+	socket.on('SettingsUpdated', handleSettingsUpdated);
+	socket.on('WidgetEvent', handleWidgetEvent);
 });
 
 onMounted(() => {
-  socket.off('SettingsUpdated', handleSettingsUpdated);
-  socket.off('WidgetEvent', handleWidgetEvent);
+	socket.off('SettingsUpdated', handleSettingsUpdated);
+	socket.off('WidgetEvent', handleWidgetEvent);
 });
-
 
 interface TtsEvent {
 	text: string;
@@ -43,7 +42,7 @@ interface TtsEvent {
 }
 
 const audioEnabled = ref<boolean>(true);
-const audioQueue = ref<TtsEvent[]>([]);
+const audioQueue: TtsEvent[] = [];
 const isPlaying = ref<boolean>(false);
 
 async function playBase64Audio(base64: string): Promise<void> {
@@ -56,11 +55,12 @@ async function playBase64Audio(base64: string): Promise<void> {
 }
 
 async function processQueue(): Promise<void> {
-	if (isPlaying.value || audioQueue.value.length === 0) return;
+	if (isPlaying.value || audioQueue.length === 0)
+		return;
 	isPlaying.value = true;
-	while (audioQueue.value.length > 0) {
-		const event = audioQueue.value.shift();
-		if (event && audioEnabled.value && event.audioBase64) {
+	while (audioQueue.length > 0) {
+		const event = audioQueue.shift();
+		if (event) {
 			await playBase64Audio(event.audioBase64);
 		}
 	}
@@ -68,9 +68,8 @@ async function processQueue(): Promise<void> {
 }
 
 function handleTtsEvent(event: TtsEvent): void {
-  console.log('Received TTS event:', event);
 	if (audioEnabled.value && event.audioBase64) {
-		audioQueue.value.push(event);
+		audioQueue.push(event);
 		processQueue();
 	}
 }
@@ -78,6 +77,6 @@ function handleTtsEvent(event: TtsEvent): void {
 </script>
 
 <template>
-  <div class="widget-container">
-  </div>
+	<div class="widget-container">
+	</div>
 </template>
