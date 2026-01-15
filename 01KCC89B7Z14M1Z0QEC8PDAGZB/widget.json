@@ -1,0 +1,18 @@
+{
+  "id": "01KCC89B7Z14M1Z0QEC8PDAGZB",
+  "name": "BSOD",
+  "description": "Full screen BSOD overlay",
+  "version": "1.0.0",
+  "framework": "vue",
+  "is_enabled": true,
+  "event_subscriptions": "[\"channel.channel_points_automatic_reward_redemption.add\"]",
+  "settings": "{\"duration\":\"15000\"}",
+  "EventSubscriptions": [
+    "channel.channel_points_automatic_reward_redemption.add"
+  ],
+  "Settings": {
+    "duration": "15000"
+  },
+  "created_at": "0001-01-01T00:00:00Z",
+  "updated_at": "2025-12-13T16:21:46.8795162Z"
+}

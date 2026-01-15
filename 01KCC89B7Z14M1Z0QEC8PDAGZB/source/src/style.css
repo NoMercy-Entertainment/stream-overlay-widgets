@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom widget styles based on your chat overlay */
+@layer base {
+	* {
+		box-sizing: border-box;
+	}
+
+	body {
+		font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+		color: #fefeff;
+	}
+
+	body:has(#container) {
+		background: #3973aa;
+	}
+
+	#app {
+		width: 100vw;
+		height: 100vh;
+		position: relative;
+	}
+}

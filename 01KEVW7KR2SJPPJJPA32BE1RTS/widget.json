@@ -1,0 +1,16 @@
+{
+  "id": "01KEVW7KR2SJPPJJPA32BE1RTS",
+  "name": "Leaderboard",
+  "description": "",
+  "version": "1.0",
+  "framework": "vue",
+  "is_enabled": true,
+  "event_subscriptions": "[\"overlay.leaderboard.show\"]",
+  "settings": "{}",
+  "EventSubscriptions": [
+    "overlay.leaderboard.show"
+  ],
+  "Settings": {},
+  "created_at": "0001-01-01T00:00:00Z",
+  "updated_at": "2026-01-13T14:30:21.6986613Z"
+}

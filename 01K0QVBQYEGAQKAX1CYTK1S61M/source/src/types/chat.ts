@@ -66,6 +66,7 @@ export interface Fragment {
 	text: string;
 	emote?: Emote;
 	html_preview?: HTMLPreview;
+	mention: Mention | null;
 }
 
 export interface Emote {
@@ -87,7 +88,9 @@ export interface HTMLPreview {
 export enum Type {
 	Emote = 'emote',
 	Text = 'text',
+	Mention = 'mention',
 	URL = 'url',
+	HTML = 'html',
 }
 
 export interface OGMetadata {
@@ -95,4 +98,11 @@ export interface OGMetadata {
 	description?: string | null;
 	image?: string | null;
 	host?: string | null;
+}
+
+export interface Mention {
+	id: string;
+	user_name: string;
+	display_name: string;
+	color_hex: string;
 }
