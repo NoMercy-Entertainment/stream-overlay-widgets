@@ -9,6 +9,7 @@ import BSODScreen from './components/BSODScreen.vue';
 import GlitchLayer from './components/GlitchLayer.vue';
 import { useWidgetSocket } from './hooks/useWidgetSocket';
 import sounds from './stores/sounds';
+import { Argument, BSODTriggerPayload } from './types/events';
 
 // ---------------- OS SELECTION ----------------
 const os = ref<'win31' | 'win95' | 'win98' | 'win2000' | 'winXp' | 'win10'>('winXp');
@@ -137,22 +138,6 @@ function startPercentageAnimation(durationMs: number) {
 	};
 
 	percentageIntervalId = window.setInterval(update, 200);
-}
-
-// ---------------- EVENT PAYLOAD ----------------
-interface BSODTriggerPayload {
-	user: {
-		id: string;
-		display_name: string;
-	};
-	reward: {
-		id: string;
-		title: string;
-	};
-	input: string;
-	audio: string;
-	duration: number;
-	os: string;
 }
 
 // ---------------- MAIN HANDLER ----------------
@@ -322,9 +307,9 @@ watch(state, (newState, oldState) => {
 });
 
 // ---------------- SOCKET EVENT ----------------
-function handleWidgetEvent(eventPayload: any) {
+function handleWidgetEvent(eventPayload: Argument<BSODTriggerPayload>) {
 	if (eventPayload.EventType === 'bsod.trigger') {
-		handleBSODTrigger(eventPayload.Data as BSODTriggerPayload);
+		handleBSODTrigger(eventPayload.Data);
 	}
 }
 

@@ -1,0 +1,18 @@
+{
+  "id": "01KF1DS7PB56NKDX3715B69MGA",
+  "name": "Feather Alert",
+  "description": "Alerts when the feather has been hidden or shown",
+  "version": "1.0.0",
+  "framework": "vue",
+  "is_enabled": true,
+  "event_subscriptions": "[\"overlay.feather.show\"]",
+  "settings": "{\"rainbow\":true}",
+  "EventSubscriptions": [
+    "overlay.feather.show"
+  ],
+  "Settings": {
+    "rainbow": true
+  },
+  "created_at": "0001-01-01T00:00:00Z",
+  "updated_at": "2026-01-15T18:13:17.13337Z"
+}
