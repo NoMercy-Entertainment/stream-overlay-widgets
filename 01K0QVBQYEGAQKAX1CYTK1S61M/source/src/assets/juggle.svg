@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="400" height="30" viewBox="-20 0 400 30" style="overflow:visible;display:block;">
+  <defs>
+    <style>
+      .e { transform-box: fill-box; transform-origin: center; transform: translateY(80px); }
+    </style>
+    <!-- clip at SVG bottom (y=30) but allow content above -->
+    <clipPath id="c">
+      <rect x="-100" y="-100" width="600" height="130"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#c)">
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_1e6cef451e0e4b9c80bd0a49e4fa32f7/default/dark/2.0"  x="0"   y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_a9b19da3b79c44548ee6005955d17011/default/dark/2.0"  x="19"  y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_ab5f1869e82c4294940da28a724e500e/default/dark/2.0"  x="38"  y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_ed81b2bd1aa74e6494455d674ce9cdca/default/dark/2.0"  x="57"  y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_0b09a04c180049849e882128a1e4aab2/default/dark/2.0"  x="76"  y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_ed55982047f64e14a90bc7aae2ea84d3/default/dark/2.0"  x="95"  y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_f43d0673029e41ada51957fad1feb7e1/default/dark/2.0"  x="114" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_e8241d15176642d79ade7394a27f0d19/default/dark/2.0"  x="133" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_8fe0fbf973c046239a66462d86cd5926/default/dark/2.0"  x="152" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_5cc59929fe4149df8d460afea6ab3ec8/default/dark/2.0"  x="171" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_d6f1a55d1e3841ab86780d37b72b30fd/default/dark/2.0"  x="190" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_49d3c8e6d3b94f1d8ec84e1ffeaa9982/default/dark/2.0"  x="209" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_e8d0be3ce5624c0fa1d14ff69c54d177/default/dark/2.0"  x="228" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_9384d960c5a14dd7b5deb2bfa361a2a8/default/dark/2.0"  x="247" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_4f61150629344c80a2bbd35b2127aff9/default/dark/2.0"  x="266" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_9b0ebe88aaac4e8bad608b01b655f762/default/dark/2.0"  x="285" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_49b2c69642fe46f6a0a1b2107557b0f8/default/dark/2.0"  x="304" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_2f3489f71bbf4bfea4344613051ae318/default/dark/2.0"  x="323" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_6294703d372e4c96bb71c6b6c319cdf3/default/dark/2.0"  x="342" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_6948517528cc4666b7f7e1929d2f246d/default/dark/2.0"  x="361" y="4" width="22" height="22"/>
+  <image class="e" href="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_fc318ad608f542f2bb3880eb25995dfa/default/dark/2.0"  x="378" y="4" width="22" height="22"/>
+  </g>
+
+  <script type="text/javascript"><![CDATA[
+    (function() {
+      var throwDur = 1200;  // ms per throw arc
+      var bottom   = 80;   // px below SVG where emotes rest (hidden)
+      var numX     = 20;   // horizontal slots across 400px
+      var slotW    = 19;   // px per slot
+      var lastX    = new Map();
+      var inFlight = new Set();
+
+      function pickX(el) {
+        var last = lastX.get(el);
+        var s;
+        do { s = Math.floor(Math.random() * numX); } while (s === last);
+        lastX.set(el, s);
+        return s * slotW;
+      }
+
+      function throwOne(el, delay) {
+        inFlight.add(el);
+        el.setAttribute('x', pickX(el));
+        var peak = -(4  + Math.random() * 11);
+        var r1   = -(10 + Math.random() * 20);
+        var r2   =   5  + Math.random() * 25;
+        var dx   = -(5  + Math.random() * 10);
+        var a = el.animate([
+          { transform:'translateY('+bottom+'px) rotate('+r1+'deg)', easing:'cubic-bezier(0.215,0.61,0.355,1)' },
+          { transform:'translateY('+peak+'px) translateX('+dx+'px) rotate('+r2+'deg)', easing:'cubic-bezier(0.55,0.055,0.675,0.19)' },
+          { transform:'translateY('+bottom+'px) rotate('+r1+'deg)' }
+        ], { duration:throwDur, delay:delay||0, fill:'both', iterations:1 });
+        a.onfinish = function() { a.cancel(); inFlight.delete(el); };
+      }
+
+      var els = Array.from(document.querySelectorAll('.e'));
+
+      function toss() {
+        // pick 5–6 emotes that aren't currently in flight
+        var pool = els.filter(function(e) { return !inFlight.has(e); });
+        for (var i = pool.length-1; i>0; i--) {
+          var j = Math.floor(Math.random()*(i+1)); var t=pool[i]; pool[i]=pool[j]; pool[j]=t;
+        }
+        var size  = Math.min(5 + Math.round(Math.random()), pool.length);
+        var group = pool.slice(0, size);
+        var stagger = 55 + Math.random() * 45; // 55–100ms between each emote in the group
+
+        group.forEach(function(el, i) { throwOne(el, i * stagger); });
+
+        // wait for the whole handful to finish, then pause before next toss
+        var totalFlight = (size - 1) * stagger + throwDur;
+        var pause = Math.random() * 10; // 0–10ms jitter
+        setTimeout(toss, totalFlight + pause - 150); // next toss fires ~150ms before current one fully lands
+      }
+
+      toss(); // fire first handful immediately
+    })();
+  ]]></script>
+</svg>

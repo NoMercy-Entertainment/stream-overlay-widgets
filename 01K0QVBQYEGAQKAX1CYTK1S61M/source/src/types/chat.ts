@@ -26,6 +26,8 @@ export interface ChatMessage {
 	created_at: Date;
 	updated_at: Date;
 	animationState?: 'entering' | 'active' | 'leaving';
+	is_decorated?: boolean;
+	decoration_style?: string;
 }
 
 export interface Badge {
@@ -75,6 +77,7 @@ export interface Emote {
 	owner_id: string;
 	format: string[];
 	provider: string;
+	is_gigantified?: boolean;
 	urls: { [key: string]: string };
 }
 

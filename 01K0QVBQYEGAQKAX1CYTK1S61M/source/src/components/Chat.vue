@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ChatMessage } from '@/types/chat';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 import { useWidgetSocket } from '@/hooks/useWidgetSocket';
 import { addMessage, chatMessageQueue } from '@/stores/chat';
 import {
@@ -11,8 +11,7 @@ import {
 } from '@/stores/config';
 import { createMessageNode, tooLight } from '@/utils';
 import MessageNode from './MessageNode.vue';
-
-const chatBox = ref<HTMLElement | null>(null);
+import simmer from '@/assets/juggle.svg';
 
 const socket = useWidgetSocket(widgetId);
 
@@ -124,9 +123,22 @@ function handleAfterLeave(el: HTMLElement) {
 					</div>
 				</div>
 
-				<div class="flex flex-row p-3 bg-neutral-900 rounded-lg -mt-3 -ml-4 mr-4 pt-5 message-bubble">
+				<div class="relative overflow-clip bg-neutral-900 flex p-3 rounded-lg -mt-3 -ml-4 mr-4 pt-5 message-bubble"
+					:class="{
+						'decoration-rainbow-eclipse flex-row': message.is_decorated && message.decoration_style === 'rainbow-eclipse',
+						'decoration-simmer flex-col': message.is_decorated && message.decoration_style === 'simmer',
+						'decoration-cosmic-abyss flex-row': message.is_decorated && message.decoration_style === 'cosmic-abyss',
+					}">
+
+					<video v-if="message.is_decorated && message.decoration_style === 'cosmic-abyss'" 
+					class="absolute inset-0 z-0" autoplay muted loop playsinline
+					src="https://d3aqoihi2n8ty8.cloudfront.net/power-ups/cosmic-abyss-tall.mp4"></video>
+
+					<object v-if="message.is_decorated && message.decoration_style === 'simmer'" type="image/svg+xml" 
+						:data="simmer" class="h-8 w-available mx-1 -mt-2" />
+
 					<div
-						class="message-content text-[1.1rem] leading-7 font-medium max-h-96 overflow-clip text-white w-full"
+						class="message-content relative text-[1.1rem] leading-7 rounded-lg font-medium z-10 max-h-96 overflow-clip text-white w-full"
 					>
 						<MessageNode :node="message.message_node" />
 					</div>
@@ -249,5 +261,82 @@ function handleAfterLeave(el: HTMLElement) {
 
 .list-leave-active {
 	@apply absolute;
+}
+
+.decoration-rainbow-eclipse {
+	animation: rainbow-eclipse 3s linear infinite;
+	&> div:last-child {
+		background: rgb(23 23 23);
+		padding: .75rem;
+		margin: .25rem;
+	}
+}
+.decoration-rainbow-eclipse:before {
+    animation: rotate 4s linear infinite;
+    background-image: conic-gradient(#b23ff8, #3cc890, #38a7ca, #b23ff8);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    content: "";
+    height: 2000px;
+    width: 110%;
+    position: absolute;
+    transform-origin: center;
+    top: -1000px;
+    left: -15px;
+}
+
+.decoration-simmer {
+	animation: simmer 2s ease-in-out infinite;
+    background: linear-gradient(90deg, #3866dd, #ff4c5b);
+	&> div:last-child {
+		background: rgb(23 23 23);
+		padding: .75rem;
+		margin: 0 .25rem .25rem;
+	}
+}
+
+.decoration-cosmic-abyss {
+	animation: cosmic-abyss 3s ease-in-out infinite;
+	&> div:last-child {
+		background: rgb(23 23 23);
+		padding: .75rem;
+		margin: .25rem;
+	}
+}
+
+@keyframes rainbow-eclipse {
+	0% {
+		background-size: 200% 200%;
+		background-position: 0% 50%;
+	}
+	50% {
+		background-size: 200% 200%;
+		background-position: 100% 50%;
+	}
+	100% {
+		background-size: 200% 200%;
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes simmer {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 </style>

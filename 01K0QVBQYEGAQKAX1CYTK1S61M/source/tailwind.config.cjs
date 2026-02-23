@@ -165,6 +165,7 @@ module.exports = {
 	plugins: [
 		require('tailwind-children'),
 		scrollBar({ nocompatible: true }),
+    	require('@tailwindcss/typography'),
 		plugin(({ addVariant }) => {
 			addVariant('range-track', [
 				'&::-webkit-slider-runnable-track',
