@@ -138,7 +138,7 @@ function handleAfterLeave(el: HTMLElement) {
 						:data="simmer" class="h-8 w-available mx-1 -mt-2" />
 
 					<div
-						class="message-content relative text-[1.1rem] leading-7 rounded-lg font-medium z-10 max-h-96 overflow-clip text-white w-full"
+						class="message-content relative text-[1.1rem] leading-7 rounded-lg font-medium z-10 max-h-96 overflow-clip text-white w-full prose prose-invert"
 					>
 						<MessageNode :node="message.message_node" />
 					</div>

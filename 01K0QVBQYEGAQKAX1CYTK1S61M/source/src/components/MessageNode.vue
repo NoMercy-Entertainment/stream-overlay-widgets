@@ -16,21 +16,19 @@ console.log('Rendering MessageNode:', props.node);
 
 <template>
 	<div v-if="node.type === 'rootNode'" :id="node.id" :class="node.classes"
-		class="message gap-0.5 children:inline break-words prose prose-invert"
+		class="message gap-0.5 children:inline break-words"
 	>
 		<template v-for="child in node.children ?? []" :key="child.id">
 			<MessageNode :node="child" />
 		</template>
 	</div>
-	<img v-else-if="node.type === 'emote'" :id="node.id" :alt="node.attribs?.alt" :class="node.classes"
-		v-bind="node.attribs"
+	<img v-else-if="node.type === 'emote'" :id="node.id" :alt="node.attribs?.alt" :class="node.classes" v-bind="node.attribs" class="not-prose"
 	>
 	<img v-else-if="node.type === 'emote-placeholder'" :id="node.id" :alt="node.attribs?.alt" :class="node.classes"
-		class="h-7 w-auto mx-1 inline" v-bind="node.attribs"
+		class="h-7 w-auto mx-1 inline not-prose" v-bind="node.attribs"
 	>
 	<img v-else-if="node.type === 'img'" :id="node.id" :alt="node.attribs?.alt" :class="node.classes"
-		class="w-full h-auto max-h-96 inline"
-		v-bind="node.attribs"
+		class="w-full h-auto max-h-96 inline not-prose" v-bind="node.attribs"
 	>
 	<div v-else-if="node.type === 'og-preview'" :id="node.id" :class="node.classes">
 		<OGMetaPreview v-if="features.ogPreviews" :metadata="node.attribs as OGMetadata" />

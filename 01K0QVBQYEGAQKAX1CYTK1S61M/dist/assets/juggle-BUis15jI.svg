@@ -2,7 +2,7 @@
      width="400" height="30" viewBox="-20 0 400 30" style="overflow:visible;display:block;">
   <defs>
     <style>
-      .e { transform-box: fill-box; transform-origin: center; transform: translateY(280px); }
+      .e { transform-box: fill-box; transform-origin: center; transform: translateY(80px); }
     </style>
     <!-- clip at SVG bottom (y=30) but allow content above -->
     <clipPath id="c">
@@ -36,10 +36,10 @@
 
   <script type="text/javascript"><![CDATA[
     (function() {
-      var throwDur = 1200;   // duration of one throw arc
-      var bottom   = 80;   // how far below SVG emotes rest
-      var numX     = 20;    // horizontal slots
-      var slotW    = 19;
+      var throwDur = 1200;  // ms per throw arc
+      var bottom   = 80;   // px below SVG where emotes rest (hidden)
+      var numX     = 20;   // horizontal slots across 400px
+      var slotW    = 19;   // px per slot
       var lastX    = new Map();
       var inFlight = new Set();
 
@@ -76,14 +76,14 @@
         }
         var size  = Math.min(5 + Math.round(Math.random()), pool.length);
         var group = pool.slice(0, size);
-        var stagger = 55 + Math.random() * 45; // 55–100ms between each in the group
+        var stagger = 55 + Math.random() * 45; // 55–100ms between each emote in the group
 
         group.forEach(function(el, i) { throwOne(el, i * stagger); });
 
         // wait for the whole handful to finish, then pause before next toss
         var totalFlight = (size - 1) * stagger + throwDur;
-        var pause       = Math.random() * 10; // 0.4–1.2s gap between tosses
-        setTimeout(toss, totalFlight + pause - 150);
+        var pause = Math.random() * 10; // 0–10ms jitter
+        setTimeout(toss, totalFlight + pause - 150); // next toss fires ~150ms before current one fully lands
       }
 
       toss(); // fire first handful immediately
