@@ -64,7 +64,14 @@ watch(spotifyState, (prevState, newState) => {
 </script>
 
 <template>
-	<div :data-rainbow="widgetSettings.rainbow" class="w-screen h-screen overflow-hidden flex flex-end flex-col p-16 pr-10">
+	<div 
+		:data-rainbow="widgetSettings.rainbow" 
+		class="flex flex-col p-16 pr-10 overflow-hidden flex-end"
+
+		:style="{
+			width: widgetSettings.width + 'px',
+			height: widgetSettings.height + 'px',
+		}">
 		<NextInQueue v-if="widgetSettings.showNexUp" />
 		<NowPlaying v-if="widgetSettings.showNowPlaying" />
 	</div>

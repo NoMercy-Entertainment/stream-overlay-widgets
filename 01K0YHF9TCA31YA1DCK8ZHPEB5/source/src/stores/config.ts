@@ -6,6 +6,8 @@ interface WidgetSettings {
 	showNowPlaying: boolean;
 	rainbow: boolean;
 	baseColor: string;
+	width?: number;
+	height?: number;
 }
 
 // Get settings from injected global variables
@@ -20,6 +22,8 @@ function getWidgetSettings(): WidgetSettings {
 		showNowPlaying: true,
 		rainbow: true,
 		baseColor: '#f72264',
+		width: 400,
+		height: 200,
 	};
 }
 

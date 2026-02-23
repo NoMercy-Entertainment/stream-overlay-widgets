@@ -82,7 +82,11 @@ function handleWidgetEvent(eventPayload: Argument) {
 </script>
 
 <template>
-	<div :data-rainbow="widgetSettings.rainbow" class="w-screen h-screen overflow-hidden flex flex-col p-16 pr-10">
+	<div :data-rainbow="widgetSettings.rainbow" class="flex flex-col p-16 pr-10 overflow-hidden"
+		:style="{
+			width: widgetSettings.width + 'px',
+			height: widgetSettings.height + 'px',
+		}">
 		<Badge />
 	</div>
 </template>

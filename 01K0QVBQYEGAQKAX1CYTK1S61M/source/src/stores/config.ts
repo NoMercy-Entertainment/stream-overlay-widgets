@@ -8,6 +8,28 @@ interface WidgetSettings {
 	defaultColor: string;
 	width: number;
 	height: number;
+	animations: {
+		enterDirection: string;
+		exitDirection: string;
+		sequenceTiming: {
+			bannerDelay: number;
+			avatarDelay: number;
+			bubbleDelay: number;
+			contentDelay: number;
+		};
+		durations: {
+			banner: string;
+			avatar: string;
+			bubble: string;
+			content: string;
+			shine: string;
+		};
+		easings: {
+			default: string;
+			entrance: string;
+			exit: string;
+		};
+	};
 	features: {
 		userBadges: boolean;
 		userPronouns: boolean;
@@ -32,9 +54,31 @@ function getWidgetSettings(): WidgetSettings {
 		maxMessages: 4,
 		chatAnimationDuration: 0.75,
 		chatShowDuration: 30,
-		defaultColor: '#f72264',
+		defaultColor: "#f72264",
 		width: 520,
 		height: 600,
+		animations: {
+			enterDirection: "right",
+			exitDirection: "right",
+			sequenceTiming: {
+				"bannerDelay": 0,
+				avatarDelay: 0.3,
+				bubbleDelay: 0.6,
+				contentDelay: 0.9
+			},
+			durations: {
+				banner: "0.5s",
+				avatar: "0.3s",
+				bubble: "0.4s",
+				content: "0.3s",
+				shine: "12s"
+			},
+			easings: {
+				default: "ease-out",
+				entrance: "ease-in-out",
+				exit: "ease-in-out"
+			}
+		},
 		features: {
 			userBadges: true,
 			userPronouns: true,
@@ -44,8 +88,8 @@ function getWidgetSettings(): WidgetSettings {
 			marqueeText: true,
 			ogPreviews: true,
 			emoteSupport: true,
-			whitelistedUsers: true,
-		},
+			whitelistedUsers: true
+		}
 	};
 }
 

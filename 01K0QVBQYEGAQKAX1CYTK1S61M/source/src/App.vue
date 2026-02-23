@@ -8,6 +8,7 @@ import Chat from './components/Chat.vue';
 import { useWidgetSocket } from './hooks/useWidgetSocket';
 import {
 	updateWidgetSettings,
+	widgetSettings,
 	widgetId,
 } from './stores/config';
 
@@ -31,7 +32,12 @@ onMounted(() => {
 </script>
 
 <template>
-	<div class="w-screen h-screen overflow-hidden">
+	<div class="overflow-hidden"
+		:style="{
+			width: widgetSettings.width + 'px',
+			height: widgetSettings.height + 'px',
+		}"
+	>
 		<Chat v-if="socket.state.isConnected" />
 	</div>
 </template>
